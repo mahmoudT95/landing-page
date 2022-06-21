@@ -33,7 +33,7 @@ const mybutton = document.getElementById("myBtn");// select btn
  * 
 */
 
-// Build the navigation menu
+// Build the navigation menu 
     function navMenu(){
         sections.forEach(section =>{
             const secId = section.getAttribute('id')// get id to add it later to href
@@ -97,7 +97,7 @@ document.addEventListener("scroll", () => {
     makeActive();
   }); 
 
-  ///btn function to diplay it after user scroll 
+  ///btn function to diplay it after user scroll https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
   function scrollFunction() {
     if (document.body.scrollTop > 200 || document.documentElement.scrollTop >200) {
       mybutton.style.display = "inline-block";
