@@ -49,7 +49,7 @@ function navMenu() {
     // Scroll to section on link click
     linkName.addEventListener("click", (fun) => {
       fun.preventDefault(); // prevent scroll by href
-      section.scrollIntoView({ behavior: "smooth" }); // add scrool by clicking on element
+      section.scrollIntoView({ behavior: "smooth" , block: "end", inline: "nearest"}); // add scrool by clicking on element
     });
   });
 }
@@ -72,7 +72,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 function makeActive() {
   sections.forEach((section) => {
     const view = section.getBoundingClientRect();
-    if (view.top <= 250 && view.bottom >= 150) {
+    if (view.top <= 190 && view.bottom >= 190) {
       // this will check if class on view to add active
       section.classList.add("your-active-class");
       document
@@ -106,8 +106,11 @@ function scrollFunction() {
     document.documentElement.scrollTop > 200
   ) {
     mybutton.style.display = "inline-block";
+
+    
   } else {
     mybutton.style.display = "none";
+    
   }
 }
 
@@ -115,8 +118,38 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+  theList.style.display="block";
 }
+
 
 window.onscroll = function () {
   scrollFunction();
+ 
+};  
+
+
+
+// Hide fixed navigation bar while not scrolling using timeout 
+// https://github.com/30-seconds/30-seconds-of-code/blob/master/snippets/onScrollStop.md
+const onScrollStop = callback => {
+  let isScrolling;
+  window.addEventListener(
+    'scroll',
+    e => {
+      clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        callback();
+      }, 5000);
+    },
+    false
+  );
 };
+
+onScrollStop(() => {
+ theList.style.display="none";
+
+});
+document.addEventListener("scroll" ,  () => {
+theList.style.display="block";
+
+});
