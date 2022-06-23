@@ -124,6 +124,7 @@ function topFunction() {
 
 window.onscroll = function () {
   scrollFunction();
+  body.scrollIntoView({ behavior: "smooth"});
  
 };  
 
