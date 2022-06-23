@@ -41,8 +41,9 @@ function navMenu() {
     const newli = document.createElement("li"); // create new li item
     const linkName = document.createElement("a"); // create new anchor
     linkName.classList.add("menu__link"); //add class to anchor
-    linkName.setAttribute("href", `#section${secId}`); //add href so we can use event listenr to go to section that contain section id
+    linkName.setAttribute("href", `#${secId}`); //add href so we can use event listenr to go to section that contain section id
     linkName.innerText = `Section ${secname}`; //anchor inner text it will be added dynamically by for loop
+    linkName.classList.add(`navbar-link${section.id}`)
     // nesting
     newli.appendChild(linkName); // add anchors that stored in linkname to li stored in newLi
     theList.appendChild(newli); // add li to navbar list
@@ -72,19 +73,20 @@ window.addEventListener("DOMContentLoaded", (event) => {
 function makeActive() {
   sections.forEach((section) => {
     const view = section.getBoundingClientRect();
-    if (view.top <= 190 && view.bottom >= 190) {
+    if (view.top <= 150 && view.bottom >= 150) {
       // this will check if class on view to add active
       section.classList.add("your-active-class");
-      document
-        .querySelector(`.landing__container`)
-        .classList.add("your-active-class");
+      document.querySelector(`.landing__container`).classList.add("your-active-class");
+      document.querySelector(`.navbar-link${section.id}`).classList.add("active");
+      
+
     } else {
       // if not in viwe will rmove class active
 
       section.classList.remove("your-active-class");
-      document
-        .querySelector(`.landing__container`)
-        .classList.remove("your-active-class");
+      document .querySelector(`.landing__container`) .classList.remove("your-active-class");
+      document.querySelector(`.navbar-link${section.id}`).classList.remove("active");
+
     }
   });
 }

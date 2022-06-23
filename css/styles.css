@@ -244,4 +244,7 @@ section.your-active-class .landing__container::after {
     
   }
   
-  
+  .active {
+    background: #333;
+    color: #fff;
+}
