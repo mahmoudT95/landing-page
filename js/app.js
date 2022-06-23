@@ -22,10 +22,10 @@
  * Define Global Variables
  *
  */
-const theList = document.getElementById("navbar__list"); // select navabr list by it is id
-const sections = [...document.getElementsByTagName("section")]; // select all sections by there tag
-const section = document.querySelectorAll(".landing__container"); // select container
-const mybutton = document.getElementById("myBtn"); // select btn
+const theList = document.getElementById('navbar__list') // select navabr list by it is id
+const sections = [...document.getElementsByTagName('section')] // select all sections by there tag
+const section = document.querySelectorAll('.landing__container') // select container
+const mybutton = document.getElementById('myBtn') // select btn
 /**
  * End Global Variables
  * Start Helper Functions
@@ -36,28 +36,32 @@ const mybutton = document.getElementById("myBtn"); // select btn
 // Build the navigation menu
 function navMenu() {
   sections.forEach((section) => {
-    const secId = section.getAttribute("id"); // get id to add it later to href
-    const secname = section.getAttribute("data-nav"); // get data nav to give every li inner text
-    const newli = document.createElement("li"); // create new li item
-    const linkName = document.createElement("a"); // create new anchor
-    linkName.classList.add("menu__link"); //add class to anchor
-    linkName.setAttribute("href", `#${secId}`); //add href so we can use event listenr to go to section that contain section id
-    linkName.innerText = `Section ${secname}`; //anchor inner text it will be added dynamically by for loop
+    const secId = section.getAttribute('id') // get id to add it later to href
+    const secname = section.getAttribute('data-nav') // get data nav to give every li inner text
+    const newli = document.createElement('li') // create new li item
+    const linkName = document.createElement('a') // create new anchor
+    linkName.classList.add('menu__link') //add class to anchor
+    linkName.setAttribute('href', `#${secId}`) //add href so we can use event listenr to go to section that contain section id
+    linkName.innerText = `Section ${secname}` //anchor inner text it will be added dynamically by for loop
     linkName.classList.add(`navbar-link${section.id}`)
     // nesting
-    newli.appendChild(linkName); // add anchors that stored in linkname to li stored in newLi
-    theList.appendChild(newli); // add li to navbar list
+    newli.appendChild(linkName) // add anchors that stored in linkname to li stored in newLi
+    theList.appendChild(newli) // add li to navbar list
     // Scroll to section on link click
-    linkName.addEventListener("click", (fun) => {
-      fun.preventDefault(); // prevent scroll by href
-      section.scrollIntoView({ behavior: "smooth" , block: "end", inline: "nearest"}); // add scrool by clicking on element
-    });
-  });
+    linkName.addEventListener('click', (fun) => {
+      fun.preventDefault() // prevent scroll by href
+      section.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+        inline: 'nearest',
+      }) // add scrool by clicking on element
+    })
+  })
 }
 ////https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
-window.addEventListener("DOMContentLoaded", (event) => {
-  navMenu();
-});
+window.addEventListener('DOMContentLoaded', (event) => {
+  navMenu()
+})
 /**
  * End Helper Functions
  *
@@ -72,23 +76,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 function makeActive() {
   sections.forEach((section) => {
-    const view = section.getBoundingClientRect();
+    const view = section.getBoundingClientRect()
     if (view.top <= 150 && view.bottom >= 150) {
       // this will check if class on view to add active
-      section.classList.add("your-active-class");
-      document.querySelector(`.landing__container`).classList.add("your-active-class");
-      document.querySelector(`.navbar-link${section.id}`).classList.add("active");
-      
-
+      section.classList.add('your-active-class')
+      document
+        .querySelector(`.landing__container`)
+        .classList.add('your-active-class')
+      document
+        .querySelector(`.navbar-link${section.id}`)
+        .classList.add('active')
     } else {
       // if not in viwe will rmove class active
 
-      section.classList.remove("your-active-class");
-      document .querySelector(`.landing__container`) .classList.remove("your-active-class");
-      document.querySelector(`.navbar-link${section.id}`).classList.remove("active");
-
+      section.classList.remove('your-active-class')
+      document
+        .querySelector(`.landing__container`)
+        .classList.remove('your-active-class')
+      document
+        .querySelector(`.navbar-link${section.id}`)
+        .classList.remove('active')
     }
-  });
+  })
 }
 
 /**
@@ -97,9 +106,9 @@ function makeActive() {
  *
  */
 // Set sections as active
-document.addEventListener("scroll", () => {
-  makeActive();
-});
+document.addEventListener('scroll', () => {
+  makeActive()
+})
 
 ///btn function to diplay it after user scroll https://www.w3schools.com/howto/howto_js_scroll_to_top.asp
 function scrollFunction() {
@@ -107,54 +116,42 @@ function scrollFunction() {
     document.body.scrollTop > 200 ||
     document.documentElement.scrollTop > 200
   ) {
-    mybutton.style.display = "inline-block";
-
-    
+    mybutton.style.display = 'inline-block'
   } else {
-    mybutton.style.display = "none";
-    
+    mybutton.style.display = 'none'
   }
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-
-  
-  window.scrollTo({top: 0, behavior: 'smooth'});
-  document.documentElement.scrollTop = 0;
-  theList.style.display="block";
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+  document.documentElement.scrollTop = 0
+  theList.style.display = 'block'
 }
 
-
 window.onscroll = function () {
-  scrollFunction();
-  
- 
-};  
+  scrollFunction()
+}
 
-
-
-// Hide fixed navigation bar while not scrolling using timeout 
+// Hide fixed navigation bar while not scrolling using timeout
 // https://github.com/30-seconds/30-seconds-of-code/blob/master/snippets/onScrollStop.md
-const onScrollStop = callback => {
-  let isScrolling;
+const onScrollStop = (callback) => {
+  let isScrolling
   window.addEventListener(
     'scroll',
-    e => {
-      clearTimeout(isScrolling);
+    (e) => {
+      clearTimeout(isScrolling)
       isScrolling = setTimeout(() => {
-        callback();
-      }, 5000);
+        callback()
+      }, 5000)
     },
-    false
-  );
-};
+    false,
+  )
+}
 
 onScrollStop(() => {
- theList.style.display="none";
-
-});
-document.addEventListener("scroll" ,  () => {
-theList.style.display="block";
-
-});
+  theList.style.display = 'none'
+})
+document.addEventListener('scroll', () => {
+  theList.style.display = 'block'
+})
