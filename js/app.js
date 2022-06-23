@@ -72,7 +72,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 function makeActive() {
   sections.forEach((section) => {
     const view = section.getBoundingClientRect();
-    if (view.top <= 150 && view.bottom >= 150) {
+    if (view.top <= 250 && view.bottom >= 150) {
       // this will check if class on view to add active
       section.classList.add("your-active-class");
       document
