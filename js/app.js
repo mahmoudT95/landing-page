@@ -78,7 +78,7 @@ function makeActive() {
   sections.forEach((section) => {
     const view = section.getBoundingClientRect()
     if (view.top <= 190 && view.bottom >= 190) {
-      // this will check if class on view to add active
+      // this will check if section  and nav on view or not  to add or remove  active 
       section.classList.add('your-active-class')
       document
         .querySelector(`.landing__container`)
