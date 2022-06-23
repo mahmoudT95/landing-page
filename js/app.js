@@ -116,7 +116,9 @@ function scrollFunction() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0;
+
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
   document.documentElement.scrollTop = 0;
   theList.style.display="block";
 }
@@ -124,7 +126,7 @@ function topFunction() {
 
 window.onscroll = function () {
   scrollFunction();
-  body.scrollIntoView({ behavior: "smooth"});
+  
  
 };  
 
