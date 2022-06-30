@@ -42,7 +42,7 @@ function navMenu() {
     const linkName = document.createElement('a') // create new anchor
     linkName.classList.add('menu__link') //add class to anchor
     linkName.setAttribute('href', `#${secId}`) //add href so we can use event listenr to go to section that contain section id
-    linkName.innerText = `Section ${secname}` //anchor inner text it will be added dynamically by for loop
+    linkName.innerText = secname //anchor inner text it will be added dynamically by for loop
     linkName.classList.add(`navbar-link${section.id}`)
     // nesting
     newli.appendChild(linkName) // add anchors that stored in linkname to li stored in newLi
